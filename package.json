@@ -1,26 +1,27 @@
 {
-  "name": "node-app",
-  "version": "1.0.2",
-  "description": "This is simple node.js aplication",
+  "name": "note-app",
+  "version": "1.0.1",
+  "description": "nodejs-aplication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "serve": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Imran-72/node.js.git"
   },
   "keywords": [
     "node",
-    "js"
+    "javascript"
   ],
-  "author": "Imran <i@mail.ru>",
+  "author": "Imran <imail@.ru>",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Imran-72/node.js/issues"
+  },
+  "homepage": "https://github.com/Imran-72/node.js#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "express": "^4.17.2",
     "yargs": "^17.3.1"
-  },
-  "devDependencies": {
-    "@types/yargs": "^17.0.8",
-    "nodemon": "^2.0.15"
   }
 }

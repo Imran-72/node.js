@@ -1,29 +1,46 @@
-const http = require('http');
-const express = require('express');
-const chalk = require('chalk');
-const fs = require('fs/promises');
-const path = require('path');
-const { addNote } = require('./note.controller');
+const yargs = require('yargs');
+const pkg = require('./package.json');
+const { addNote, printNotes, removeNote } = require('./notes.controller');
 
-const port = 3000;
-const basePath = path.join(__dirname, 'pages');
+yargs.version(pkg.version);
 
-const app = express();
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(basePath, 'index.html'));
+yargs.command({
+  command: 'add',
+  describe: 'Add new note to list',
+  builder: {
+    title: {
+      type: 'string',
+      describe: 'Note title',
+      demandOption: true,
+    },
+  },
+  handler({ title }) {
+    addNote(title);
+  },
 });
 
-app.post('/', async (req, res) => {
-  console.log(req.body.title);
-  await addNote(req.body.title);
-  res.sendFile(path.join(basePath, 'index.html'));
+yargs.command({
+  command: 'list',
+  describe: 'Print all notes',
+  async handler() {
+    await printNotes();
+  },
 });
-app.listen(port, () => {
-  console.log(chalk.blueBright(`Server has been started on port ${port}...`));
+
+yargs.command({
+  command: 'remove',
+  describe: 'remove note',
+  builder: {
+    id: {
+      type: 'string',
+      describe: 'Note id',
+      demandOption: true,
+    },
+  },
+  async handler({ id }) {
+    console.log(id);
+    await removeNote(id);
+  },
 });
+
+yargs.parse();
