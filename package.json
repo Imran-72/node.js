@@ -23,6 +23,8 @@
   "homepage": "https://github.com/Imran-72/node.js#readme",
   "dependencies": {
     "chalk": "^4.1.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
     "yargs": "^17.3.1"
   },
   "devDependencies": {
